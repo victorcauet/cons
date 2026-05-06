@@ -1,0 +1,542 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
+
+:root {
+    --primary-color: #0A2463; /* Deep Blue */
+    --secondary-color: #1E1E1E; /* Charcoal Gray */
+    --accent-color: #B8860B; /* Muted Gold */
+    --background-light: #F8F8F8; /* Off-white */
+    --background-dark: #EFEFEF; /* Light Gray */
+    --text-dark: #2C2C2C;
+    --text-light: #6C757D;
+    --border-color: #DCDCDC;
+    --positive-color: #28A745;
+    --negative-color: #DC3545;
+    --neutral-color: #6C757D;
+}
+
+html, body, [class*="css"] {
+    font-family: 'Satoshi', sans-serif !important;
+    color: var(--text-dark);
+}
+
+.main {
+    background: var(--background-light);
+}
+
+.stSidebar {
+    background: var(--secondary-color) !important;
+}
+
+.stSidebar label, .stSidebar .stMarkdown, .stSidebar p {
+    color: var(--background-light) !important;
+}
+
+.stSidebar h2, .stSidebar h3 {
+    color: var(--accent-color) !important;
+}
+
+.kpi-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.kpi-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.kpi-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 8px;
+}
+
+.kpi-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.2;
+}
+
+.kpi-sub {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 6px;
+}
+
+.kpi-positive {
+    color: var(--positive-color);
+}
+
+.kpi-negative {
+    color: var(--negative-color);
+}
+
+.kpi-neutral  {
+    color: var(--neutral-color);
+}
+
+.section-header {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 30px 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.alert-box {
+    background: rgba(40, 167, 69, 0.1);
+    border-left: 4px solid var(--positive-color);
+    border-radius: 8px;
+    padding: 15px 20px;
+    color: var(--positive-color);
+    font-size: 14px;
+    margin: 15px 0;
+}
+
+.warning-box {
+    background: rgba(220, 53, 69, 0.1);
+    border-left: 4px solid var(--negative-color);
+    border-radius: 8px;
+    padding: 15px 20px;
+    color: var(--negative-color);
+    font-size: 14px;
+    margin: 15px 0;
+}
+
+/* Adjustments for Plotly charts */
+.js-plotly-plot .plotly .modebar {
+    background: var(--background-light);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.js-plotly-plot .plotly .modebar-btn {
+    color: var(--text-light) !important;
+}
+
+.js-plotly-plot .plotly .modebar-btn:hover {
+    background: var(--background-dark) !important;
+    color: var(--primary-color) !important;
+}
+
+/* General Streamlit adjustments */
+.stButton>button {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.stButton>button:hover {
+    background-color: #071A47; /* Darker shade of primary */
+}
+
+.stSlider .st-bb {
+    background-color: var(--primary-color);
+}
+
+.stSlider .st-bc {
+    background-color: var(--accent-color);
+}
+
+.stTextInput>div>div>input, .stNumberInput>div>div>input {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 8px 12px;
+}
+
+.stTextInput>div>div>input:focus, .stNumberInput>div>div>input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(10, 36, 99, 0.25);
+}
+
+.stSelectbox>div>div>div {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 8px 12px;
+}
+
+.stSelectbox>div>div>div:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(10, 36, 99, 0.25);
+}
+
+.stDataFrame {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.stDataFrame table {
+    border-collapse: collapse;
+}
+
+.stDataFrame th {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+    font-weight: 600;
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.stDataFrame td {
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.stDataFrame tr:last-child td {
+    border-bottom: none;
+}
+
+.stDataFrame tr:nth-child(even) {
+    background-color: var(--background-light);
+}
+
+.stDataFrame tr:hover {
+    background-color: var(--background-dark);
+}
+
+.stExpander {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #fff;
+    padding: 10px 15px;
+    margin-top: 20px;
+}
+
+.stExpander > div > div > div > p {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.stExpander > div > div > div > svg {
+    color: var(--primary-color);
+}
+
+.stExpander > div[aria-expanded="true"] {
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 10px;
+}
+
+.stExpander > div[aria-expanded="true"] > div > div > div > p {
+    color: var(--accent-color);
+}
+
+.stExpander > div[aria-expanded="true"] > div > div > div > svg {
+    color: var(--accent-color);
+}
+
+.stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
+    color: var(--primary-color);
+}
+
+.stMarkdown h1 {
+    font-size: 2.5em;
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.stMarkdown h2 {
+    font-size: 2em;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.stMarkdown h3 {
+    font-size: 1.5em;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.stMarkdown a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.stMarkdown a:hover {
+    text-decoration: underline;
+}
+
+.stMarkdown blockquote {
+    border-left: 4px solid var(--accent-color);
+    padding-left: 15px;
+    margin-left: 0;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+.stMarkdown code {
+    background-color: var(--background-dark);
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: 'Fira Code', monospace;
+}
+
+.stMarkdown pre {
+    background-color: var(--background-dark);
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+.stMarkdown table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.stMarkdown th, .stMarkdown td {
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    text-align: left;
+}
+
+.stMarkdown th {
+    background-color: var(--background-dark);
+    font-weight: 600;
+}
+
+.stMarkdown tr:nth-child(even) {
+    background-color: var(--background-light);
+}
+
+.stMarkdown tr:hover {
+    background-color: var(--background-dark);
+}
+
+.stMarkdown ul, .stMarkdown ol {
+    margin-left: 20px;
+}
+
+.stMarkdown li {
+    margin-bottom: 5px;
+}
+
+.stMarkdown hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 30px 0;
+}
+
+.stMarkdown img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.stMarkdown .stAlert {
+    border-radius: 8px;
+}
+
+.stMarkdown .stAlert > div {
+    padding: 15px 20px;
+}
+
+.stMarkdown .stAlert > div > div > div > p {
+    font-size: 14px;
+}
+
+.stMarkdown .stAlert.success {
+    background-color: rgba(40, 167, 69, 0.1);
+    border-left-color: var(--positive-color);
+    color: var(--positive-color);
+}
+
+.stMarkdown .stAlert.warning {
+    background-color: rgba(255, 193, 7, 0.1);
+    border-left-color: #FFC107;
+    color: #FFC107;
+}
+
+.stMarkdown .stAlert.error {
+    background-color: rgba(220, 53, 69, 0.1);
+    border-left-color: var(--negative-color);
+    color: var(--negative-color);
+}
+
+.stMarkdown .stAlert.info {
+    background-color: rgba(23, 162, 184, 0.1);
+    border-left-color: #17A2B8;
+    color: #17A2B8;
+}
+
+.stMarkdown .stProgress > div > div > div > div {
+    background-color: var(--primary-color);
+}
+
+.stMarkdown .stSpinner > div > div {
+    border-top-color: var(--primary-color);
+    border-left-color: var(--primary-color);
+}
+
+.stMarkdown .stMetric > div > div > div > div > div:first-child {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--text-light);
+}
+
+.stMarkdown .stMetric > div > div > div > div > div:last-child {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.stMarkdown .stMetric > div > div > div > div > div:last-child > div:last-child {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.stMarkdown .stMetric > div > div > div > div > div:last-child > div:last-child.positive {
+    color: var(--positive-color);
+}
+
+.stMarkdown .stMetric > div > div > div > div > div:last-child > div:last-child.negative {
+    color: var(--negative-color);
+}
+
+.stMarkdown .stMetric > div > div > div > div > div:last-child > div:last-child.neutral {
+    color: var(--neutral-color);
+}
+
+.stMarkdown .stRadio > label > div > div:first-child {
+    border-color: var(--border-color);
+}
+
+.stMarkdown .stRadio > label > div > div:first-child:hover {
+    border-color: var(--primary-color);
+}
+
+.stMarkdown .stRadio > label > div > div:first-child[data-checked="true"] {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.stMarkdown .stCheckbox > label > div > div:first-child {
+    border-color: var(--border-color);
+}
+
+.stMarkdown .stCheckbox > label > div > div:first-child:hover {
+    border-color: var(--primary-color);
+}
+
+.stMarkdown .stCheckbox > label > div > div:first-child[data-checked="true"] {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.stMarkdown .stMultiSelect > div > div > div > div {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 8px 12px;
+}
+
+.stMarkdown .stMultiSelect > div > div > div > div:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(10, 36, 99, 0.25);
+}
+
+.stMarkdown .stMultiSelect > div > div > div > div > div > div > div {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 3px;
+    padding: 2px 8px;
+    margin: 2px;
+}
+
+.stMarkdown .stMultiSelect > div > div > div > div > div > div > div > svg {
+    color: white;
+}
+
+.stMarkdown .stMultiSelect > div > div > div > div > div > div > div > svg:hover {
+    color: var(--accent-color);
+}
+
+.stMarkdown .stDateInput > div > div > div > input {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 8px 12px;
+}
+
+.stMarkdown .stDateInput > div > div > div > input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(10, 36, 99, 0.25);
+}
+
+.stMarkdown .stTimeInput > div > div > div > input {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 8px 12px;
+}
+
+.stMarkdown .stTimeInput > div > div > div > input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(10, 36, 99, 0.25);
+}
+
+.stMarkdown .stTextArea > div > div > textarea {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 8px 12px;
+}
+
+.stMarkdown .stTextArea > div > div > textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(10, 36, 99, 0.25);
+}
+
+.stMarkdown .stFileUploader > div > div > div > div > div > div > button {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.stMarkdown .stFileUploader > div > div > div > div > div > div > button:hover {
+    background-color: #071A47; /* Darker shade of primary */
+}
+
+.stMarkdown .stFileUploader > div > div > div > div > div > div > div > p {
+    color: var(--text-dark);
+}
+
+.stMarkdown .stFileUploader > div > div > div > div > div > div > div > p.uploadedFileName {
+    color: var(--primary-color);
+}
+
+.stMarkdown .stDownloadButton > button {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.stMarkdown .stDownloadButton > button:hover {
+    background-color: #071A47; /* Darker shade of primary */
+}
+
+.stMarkdown .stColorPicker > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div.st-bg-color.st-bg-color-normal.e1tmd8pf2.css-10q0f90.e16nr0p30 > div > div:nth-child(1) > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div.st-bg-color.st-bg-color-normal.e1tmd9pf2.css-10q0f90.e16nr0p30 > div > div:nth-child(1) > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > `lucro_liquido_brl` is not defined in the current scope. I need to ensure that `lucro_liquido_brl` is defined before this loop. Looking at the original code, `lucro_liquido_brl` is calculated before the stress test section. So, I will use that value. The previous edit was incomplete and introduced a syntax error. I need to fix that. I will rewrite the entire `stress_test` section to ensure correctness and clarity. I will also include the `local_css` function and the `css_content` in the Python file for simplicity, as creating a separate `style.css` file and then reading it adds an extra step that might complicate local execution for the user. This is a trade-off between code cleanliness and ease of use for a single-file Streamlit app. Given the user's request for an 

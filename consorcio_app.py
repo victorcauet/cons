@@ -18,27 +18,6 @@ def local_css(file_name):
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 # --- CSS Personalizado --- #
-# Salvando o CSS em um arquivo separado para melhor organização
-css_content = """
-@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
-html, body, [class*="css"] { font-family: 'Satoshi', sans-serif !important; }
-.main { background: #f7f6f2; }
-.stSidebar { background: #1c1b19 !important; }
-.stSidebar label, .stSidebar .stMarkdown, .stSidebar p { color: #cdccca !important; }
-.stSidebar h2, .stSidebar h3 { color: #4f98a3 !important; }
-.kpi-card { background:#fff; border-radius:12px; padding:20px 16px; box-shadow:0 1px 2px rgba(40,37,29,.06),0 4px 12px rgba(40,37,29,.04); border:1px solid rgba(40,37,29,.08); text-align:center; }
-.kpi-label { font-size:10px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#7a7974; margin-bottom:6px; }
-.kpi-value { font-size:22px; font-weight:700; color:#28251d; line-height:1.2; }
-.kpi-sub { font-size:11px; color:#7a7974; margin-top:4px; }
-.kpi-positive { color:#437a22; }
-.kpi-negative { color:#a12c7b; }
-.kpi-neutral  { color:#01696f; }
-.section-header { font-size:17px; font-weight:700; color:#28251d; margin:24px 0 10px; padding-bottom:6px; border-bottom:2px solid #01696f; }
-.alert-box { background:#cedcd8; border-left:4px solid #01696f; border-radius:8px; padding:12px 16px; color:#0f3638; font-size:13px; margin:10px 0; }
-.warning-box { background:#ddcfc6; border-left:4px solid #964219; border-radius:8px; padding:12px 16px; color:#4b2614; font-size:13px; margin:10px 0; }
-"""
-with open("style.css", "w") as f:
-    f.write(css_content)
 local_css("style.css")
 
 # --- Sidebar --- #
@@ -110,24 +89,26 @@ df_sim = pd.DataFrame({
 })
 
 # --- Header --- #
-st.markdown("""<div style='display:flex;align-items:center;gap:14px;margin-bottom:8px'>
-  <div style='font-size:34px'>🚛</div>
+st.markdown("""<div style=\'display:flex;align-items:center;gap:14px;margin-bottom:8px\'>
+  <div style=\'font-size:34px\'>🚛</div>
   <div>
-    <div style='font-size:22px;font-weight:700;color:#28251d'>Trade de Consórcio — Simulador Asset-Light</div>
-    <div style='font-size:12px;color:#7a7974'>Estratégia Broker / Ágio | Caminhões & Pesados</div>
+    <div style=\'font-size:22px;font-weight:700;color:var(--primary-color)\
+	'>Trade de Consórcio — Simulador Asset-Light</div>
+    <div style=\'font-size:12px;color:var(--text-light)\
+	'>Estratégia Broker / Ágio | Caminhões & Pesados</div>
   </div>
 </div>""", unsafe_allow_html=True)
 
 if contemplado:
-    st.markdown(f"<div class='alert-box'>✅ <strong>Contemplação prevista no Mês {mes_contemplacao}</strong> — "
+    st.markdown(f"<div class=\'alert-box\'>✅ <strong>Contemplação prevista no Mês {mes_contemplacao}</strong> — "
                 f"Caixa Paralelo acumulado (€ {caixa_par_necessario_eur:,.0f}) + Lance Embutido (€ {lance_embutido_brl/taxa_cambio_base:,.0f}) "
                 f"≥ Lance Alvo ({lance_alvo_pct*100:.0f}% da carta = R$ {lance_alvo_brl:,.0f}).</div>", unsafe_allow_html=True)
 else:
-    st.markdown(f"<div class='warning-box'>⚠️ <strong>Contemplação não atingida</strong> no horizonte de {max_months} meses. "
+    st.markdown(f"<div class=\'warning-box\'>⚠️ <strong>Contemplação não atingida</strong> no horizonte de {max_months} meses. "
                 "Aumente o Aporte no Caixa Paralelo ou o Horizonte.</div>", unsafe_allow_html=True)
 
 # --- KPIs --- #
-st.markdown("<div class='section-header'>📊 Indicadores-Chave</div>", unsafe_allow_html=True)
+st.markdown("<div class=\'section-header\'>📊 Indicadores-Chave</div>", unsafe_allow_html=True)
 c1,c2,c3,c4,c5,c6 = st.columns(6)
 kpis = [
     (c1, "Mês Contemplação",    f"Mês {mes_contemplacao}",              "",                                              "neutral"),
@@ -139,50 +120,51 @@ kpis = [
 ]
 for col, lbl, val, sub, cls in kpis:
     with col:
-        st.markdown(f"<div class='kpi-card'><div class='kpi-label'>{lbl}</div>"
-                    f"<div class='kpi-value kpi-{cls}'>{val}</div>"
-                    f"<div class='kpi-sub'>{sub}</div></div>", unsafe_allow_html=True)
+        st.markdown(f"<div class=\'kpi-card\'><div class=\'kpi-label\'>{lbl}</div>"
+                    f"<div class=\'kpi-value kpi-{cls}\'
+	>{val}</div>"
+                    f"<div class=\'kpi-sub\'>{sub}</div></div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 
 # --- Charts --- #
-st.markdown("<div class='section-header'>📈 Evolução Mensal</div>", unsafe_allow_html=True)
+st.markdown("<div class=\'section-header\'>📈 Evolução Mensal</div>", unsafe_allow_html=True)
 fig = make_subplots(rows=1, cols=2,
     subplot_titles=["Desembolso Acumulado (€)", "Progresso do Lance (% da Carta)"],
     horizontal_spacing=0.08)
 
 fig.add_trace(go.Scatter(x=df_sim["Mês"], y=df_sim["Caixa Paralelo (€)"],
     name="Caixa Paralelo", fill="tozeroy",
-    line=dict(color="#01696f", width=2), fillcolor="rgba(1,105,111,0.12)"), row=1, col=1)
+    line=dict(color="var(--primary-color)", width=2), fillcolor="rgba(10,36,99,0.12)"), row=1, col=1)
 fig.add_trace(go.Scatter(x=df_sim["Mês"], y=df_sim["Desembolso Total (€)"],
     name="Desembolso Total", fill="tonexty",
-    line=dict(color="#964219", width=2), fillcolor="rgba(150,66,25,0.10)"), row=1, col=1)
+    line=dict(color="var(--accent-color)", width=2), fillcolor="rgba(184,134,11,0.10)"), row=1, col=1)
 if contemplado:
     for c in [1,2]:
-        fig.add_vline(x=mes_contemplacao, line_dash="dash", line_color="#01696f",
+        fig.add_vline(x=mes_contemplacao, line_dash="dash", line_color="var(--primary-color)",
                       annotation_text=f"M{mes_contemplacao}" if c==2 else "",
-                      annotation_font_color="#01696f", row=1, col=c)
+                      annotation_font_color="var(--primary-color)", row=1, col=c)
 
 fig.add_trace(go.Scatter(x=df_sim["Mês"], y=df_sim["Lance % da Carta"],
-    name="Lance %", line=dict(color="#da7101", width=2.5),
-    fill="tozeroy", fillcolor="rgba(218,113,1,0.10)"), row=1, col=2)
-fig.add_hline(y=lance_alvo_pct*100, line_dash="dot", line_color="#a12c7b",
+    name="Lance %", line=dict(color="var(--accent-color)", width=2.5),
+    fill="tozeroy", fillcolor="rgba(184,134,11,0.10)"), row=1, col=2)
+fig.add_hline(y=lance_alvo_pct*100, line_dash="dot", line_color="var(--negative-color)",
               annotation_text=f"Alvo {lance_alvo_pct*100:.0f}%",
-              annotation_position="right", annotation_font_color="#a12c7b", row=1, col=2)
-fig.add_hline(y=lance_embutido_pct*100, line_dash="dot", line_color="#006494",
+              annotation_position="right", annotation_font_color="var(--negative-color)", row=1, col=2)
+fig.add_hline(y=lance_embutido_pct*100, line_dash="dot", line_color="var(--primary-color)",
               annotation_text=f"Embutido {lance_embutido_pct*100:.0f}%",
-              annotation_position="right", annotation_font_color="#006494", row=1, col=2)
+              annotation_position="right", annotation_font_color="var(--primary-color)", row=1, col=2)
 
 fig.update_layout(height=360, showlegend=True,
     legend=dict(orientation="h", yanchor="bottom", y=-0.28, xanchor="center", x=0.5),
-    plot_bgcolor="#ffffff", paper_bgcolor="#f7f6f2",
-    font=dict(family="Satoshi, sans-serif", color="#28251d", size=12),
+    plot_bgcolor="#ffffff", paper_bgcolor="var(--background-light)",
+    font=dict(family="Satoshi, sans-serif", color="var(--text-dark)", size=12),
     margin=dict(l=10, r=10, t=40, b=60))
-fig.update_xaxes(gridcolor="#dcd9d5", title_text="Mês")
-fig.update_yaxes(gridcolor="#dcd9d5")
+fig.update_xaxes(gridcolor="var(--border-color)", title_text="Mês")
+fig.update_yaxes(gridcolor="var(--border-color)")
 st.plotly_chart(fig, use_container_width=True)
 
 # --- Waterfall + Exit Table --- #
-st.markdown("<div class='section-header'>💰 Cascata de Saída</div>", unsafe_allow_html=True)
+st.markdown("<div class=\'section-header\'>💰 Cascata de Saída</div>", unsafe_allow_html=True)
 cl, cr = st.columns([1.3, 1])
 
 with cl:
@@ -192,18 +174,18 @@ with cl:
         x=["Carta Bruta","(-) Lance\nEmbutido","Crédito\nLíquido",f"(+) Ágio\n{agio_pct*100:.0f}%",
            f"(-) Comissão\nBroker {comissao_broker_pct*100:.0f}%","✅ Lucro\nLíquido"],
         y=[valor_carta_brl, -lance_embutido_brl, 0, agio_bruto_brl, -comissao_broker_brl, 0],
-        connector=dict(line=dict(color="#dcd9d5")),
-        increasing=dict(marker_color="#437a22"),
-        decreasing=dict(marker_color="#a12c7b"),
-        totals=dict(marker_color="#01696f"),
+        connector=dict(line=dict(color="var(--border-color)")),
+        increasing=dict(marker_color="var(--positive-color)"),
+        decreasing=dict(marker_color="var(--negative-color)"),
+        totals=dict(marker_color="var(--primary-color)"),
         text=[f"R$ {abs(v):,.0f}" if v != 0 else "" for v in [valor_carta_brl,-lance_embutido_brl,0,agio_bruto_brl,-comissao_broker_brl,0]],
         textposition="outside",
     ))
     fig_wf.update_layout(height=340, title="Cascata de Valor (R$)",
-        plot_bgcolor="#ffffff", paper_bgcolor="#f7f6f2", showlegend=False,
-        font=dict(family="Satoshi, sans-serif", size=11, color="#28251d"),
+        plot_bgcolor="#ffffff", paper_bgcolor="var(--background-light)", showlegend=False,
+        font=dict(family="Satoshi, sans-serif", size=11, color="var(--text-dark)"),
         margin=dict(l=10, r=10, t=40, b=10),
-        yaxis=dict(gridcolor="#dcd9d5"))
+        yaxis=dict(gridcolor="var(--border-color)"))
     st.plotly_chart(fig_wf, use_container_width=True)
 
 with cr:
@@ -224,7 +206,7 @@ with cr:
     st.dataframe(df_exit, use_container_width=True, hide_index=True)
 
 # --- Stress Test --- #
-st.markdown("<div class='section-header'>⚠️ Stress Cambial (Repatriação BRL → EUR)</div>", unsafe_allow_html=True)
+st.markdown("<div class=\'section-header\'>⚠️ Stress Cambial (Repatriação BRL → EUR)</div>", unsafe_allow_html=True)
 all_rates = sorted(set([taxa_cambio_base] + [float(r) for r in stress_rates]))
 stress_rows = []
 for r in all_rates:
@@ -250,17 +232,17 @@ st.dataframe(df_stress, use_container_width=True, hide_index=True)
 # Bar chart stress
 rates_chart  = [float(r["R$/€"]) for r in stress_rows]
 lucros_chart = [lucro_liquido_brl / r for r in rates_chart]
-bar_colors   = ["#01696f" if abs(r - taxa_cambio_base) < 0.01 else ("#a12c7b" if l < 0 else "#964219") for r, l in zip(rates_chart, lucros_chart)]
+bar_colors   = ["var(--primary-color)" if abs(r - taxa_cambio_base) < 0.01 else ("var(--negative-color)" if l < 0 else "var(--accent-color)") for r, l in zip(rates_chart, lucros_chart)]
 fig_s = go.Figure(go.Bar(
     x=[f"R${r:.2f}/€" for r in rates_chart], y=lucros_chart,
     marker_color=bar_colors,
     text=[f"€ {v:,.0f}" for v in lucros_chart], textposition="outside"))
-fig_s.add_hline(y=0, line_color="#28251d", line_width=1)
+fig_s.add_hline(y=0, line_color="var(--text-dark)", line_width=1)
 fig_s.update_layout(height=260, title="Lucro Líquido em € por Cenário Cambial",
-    plot_bgcolor="#ffffff", paper_bgcolor="#f7f6f2", showlegend=False,
-    font=dict(family="Satoshi, sans-serif", size=12, color="#28251d"),
+    plot_bgcolor="#ffffff", paper_bgcolor="var(--background-light)", showlegend=False,
+    font=dict(family="Satoshi, sans-serif", size=12, color="var(--text-dark)"),
     margin=dict(l=10, r=10, t=40, b=10),
-    yaxis=dict(gridcolor="#dcd9d5", title="€"), xaxis=dict(gridcolor="#dcd9d5"))
+    yaxis=dict(gridcolor="var(--border-color)", title="€"), xaxis=dict(gridcolor="var(--border-color)"))
 st.plotly_chart(fig_s, use_container_width=True)
 
 # --- Detail table --- #
@@ -277,7 +259,7 @@ with st.expander("📋 Fluxo Detalhado Mês a Mês", expanded=False):
                  use_container_width=True, hide_index=True)
 
 st.markdown("---")
-st.markdown("<div style='font-size:11px;color:#7a7974;text-align:center'>"
+st.markdown("<div style=\'font-size:11px;color:var(--text-light);text-align:center\'>"
             "Simulação para fins de planejamento financeiro. Não constitui recomendação de investimento. "
             "Resultados dependem de condições reais de mercado, do grupo de consórcio e da taxa de câmbio na repatriação."
             "</div>", unsafe_allow_html=True)
