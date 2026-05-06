@@ -159,8 +159,7 @@ with st.sidebar:
     if not stress_rates:
         stress_rates = [7.0, 8.0, 9.0]
 
-    st.markdown("---
-")
+    st.markdown("---")
     max_months = st.slider("Horizonte Máximo (meses)", 12, 120, 60)
 
 # --- Core math --- #
