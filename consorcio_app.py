@@ -1,10 +1,10 @@
-
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy as np
 
+# --- Configuração da Página --- #
 st.set_page_config(
     page_title="Trade de Consórcio — Simulador Asset-Light",
     page_icon="🚛",
@@ -12,8 +12,14 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.markdown("""
-<style>
+# --- Funções Auxiliares --- #
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
+# --- CSS Personalizado --- #
+# Salvando o CSS em um arquivo separado para melhor organização
+css_content = """
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
 html, body, [class*="css"] { font-family: 'Satoshi', sans-serif !important; }
 .main { background: #f7f6f2; }
@@ -30,10 +36,12 @@ html, body, [class*="css"] { font-family: 'Satoshi', sans-serif !important; }
 .section-header { font-size:17px; font-weight:700; color:#28251d; margin:24px 0 10px; padding-bottom:6px; border-bottom:2px solid #01696f; }
 .alert-box { background:#cedcd8; border-left:4px solid #01696f; border-radius:8px; padding:12px 16px; color:#0f3638; font-size:13px; margin:10px 0; }
 .warning-box { background:#ddcfc6; border-left:4px solid #964219; border-radius:8px; padding:12px 16px; color:#4b2614; font-size:13px; margin:10px 0; }
-</style>
-""", unsafe_allow_html=True)
+"""
+with open("style.css", "w") as f:
+    f.write(css_content)
+local_css("style.css")
 
-# ── Sidebar ──────────────────────────────────────────────────────────────────
+# --- Sidebar --- #
 with st.sidebar:
     st.markdown("## 🚛 Parâmetros")
 
@@ -59,7 +67,7 @@ with st.sidebar:
     st.markdown("---")
     max_months = st.slider("Horizonte Máximo (meses)", 12, 120, 60)
 
-# ── Core math ────────────────────────────────────────────────────────────────
+# --- Core math --- #
 lance_embutido_brl         = lance_embutido_pct * valor_carta_brl
 lance_alvo_brl             = lance_alvo_pct     * valor_carta_brl
 caixa_par_necessario_brl   = max(0.0, lance_alvo_brl - lance_embutido_brl)
@@ -81,7 +89,7 @@ lucro_liquido_brl    = agio_bruto_brl      - comissao_broker_brl
 lucro_liq_eur_base   = lucro_liquido_brl   / taxa_cambio_base
 roi_nominal          = lucro_liquido_brl   / total_desembolso_brl if total_desembolso_brl > 0 else 0
 
-# ── Month-by-month ────────────────────────────────────────────────────────────
+# --- Month-by-month --- #
 months, parc_acc, caixa_acc, desp_acc, lance_pct_list = [], [], [], [], []
 for m in range(1, max_months + 1):
     months.append(m)
@@ -101,7 +109,7 @@ df_sim = pd.DataFrame({
     "Lance % da Carta": lance_pct_list
 })
 
-# ── Header ────────────────────────────────────────────────────────────────────
+# --- Header --- #
 st.markdown("""<div style='display:flex;align-items:center;gap:14px;margin-bottom:8px'>
   <div style='font-size:34px'>🚛</div>
   <div>
@@ -118,7 +126,7 @@ else:
     st.markdown(f"<div class='warning-box'>⚠️ <strong>Contemplação não atingida</strong> no horizonte de {max_months} meses. "
                 "Aumente o Aporte no Caixa Paralelo ou o Horizonte.</div>", unsafe_allow_html=True)
 
-# ── KPIs ──────────────────────────────────────────────────────────────────────
+# --- KPIs --- #
 st.markdown("<div class='section-header'>📊 Indicadores-Chave</div>", unsafe_allow_html=True)
 c1,c2,c3,c4,c5,c6 = st.columns(6)
 kpis = [
@@ -136,7 +144,7 @@ for col, lbl, val, sub, cls in kpis:
                     f"<div class='kpi-sub'>{sub}</div></div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 
-# ── Charts ────────────────────────────────────────────────────────────────────
+# --- Charts --- #
 st.markdown("<div class='section-header'>📈 Evolução Mensal</div>", unsafe_allow_html=True)
 fig = make_subplots(rows=1, cols=2,
     subplot_titles=["Desembolso Acumulado (€)", "Progresso do Lance (% da Carta)"],
@@ -173,7 +181,7 @@ fig.update_xaxes(gridcolor="#dcd9d5", title_text="Mês")
 fig.update_yaxes(gridcolor="#dcd9d5")
 st.plotly_chart(fig, use_container_width=True)
 
-# ── Waterfall + Exit Table ────────────────────────────────────────────────────
+# --- Waterfall + Exit Table --- #
 st.markdown("<div class='section-header'>💰 Cascata de Saída</div>", unsafe_allow_html=True)
 cl, cr = st.columns([1.3, 1])
 
@@ -215,16 +223,19 @@ with cr:
     })
     st.dataframe(df_exit, use_container_width=True, hide_index=True)
 
-# ── Stress Test ───────────────────────────────────────────────────────────────
+# --- Stress Test --- #
 st.markdown("<div class='section-header'>⚠️ Stress Cambial (Repatriação BRL → EUR)</div>", unsafe_allow_html=True)
 all_rates = sorted(set([taxa_cambio_base] + [float(r) for r in stress_rates]))
 stress_rows = []
 for r in all_rates:
-    ll_eur  = lucro_liquido_brl / r
-    dd_eur  = total_desembolso_brl / r
+    # Recalcular valores em EUR com a nova taxa 'r'
+    ll_eur = lucro_liquido_brl / r
+    dd_eur = total_desembolso_brl / r
+    
     roi_eur = ll_eur / dd_eur if dd_eur > 0 else 0
     delta   = ll_eur - lucro_liq_eur_base
-    delta_p = delta / abs(lucro_liq_eur_base) * 100 if lucro_liq_eur_base != 0 else 0
+    delta_p = (delta / abs(lucro_liq_eur_base) * 100) if lucro_liq_eur_base != 0 else 0
+    
     tag     = "📌 Base" if abs(r - taxa_cambio_base) < 0.01 else "🔴 Stress"
     stress_rows.append({
         "Cenário": tag, "R$/€": f"{r:.2f}",
@@ -252,7 +263,7 @@ fig_s.update_layout(height=260, title="Lucro Líquido em € por Cenário Cambia
     yaxis=dict(gridcolor="#dcd9d5", title="€"), xaxis=dict(gridcolor="#dcd9d5"))
 st.plotly_chart(fig_s, use_container_width=True)
 
-# ── Detail table ──────────────────────────────────────────────────────────────
+# --- Detail table --- #
 with st.expander("📋 Fluxo Detalhado Mês a Mês", expanded=False):
     df_d = df_sim.copy()
     df_d["Status"] = df_d["Mês"].apply(
